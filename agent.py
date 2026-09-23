@@ -16,7 +16,15 @@ from support import (MODEL, SYSTEM_PROMPT, call_local, execute_tool, mcp_client,
 
 MAX_TOOL_CALLS = 8  # Larkspur's own build capped the loop here; then a human takes over.
 
-TONE_ADDENDUM = ""                       # ✏️ Build 4, step 4.1, intelligence goal
+TONE_ADDENDUM = """
+If a customer is abusive, makes a legal threat, or asks for something outside the agent's scope, do not continue the normal service flow.
+
+For a legal threat: briefly acknowledge the concern, call escalate_to_human, make no promises about outcomes, refunds, compensation, or legal matters, and stop the normal entitlement or rebooking flow.
+
+For abusive language without a legal threat: remain calm and professional. Do not mirror the customer's language or become defensive.
+
+For an out-of-scope request: explain the limitation clearly and escalate to a human when human handling is required.
+"""                       # ✏️ Build 4, step 4.1, intelligence goal
 # ✏️ Build 2, step 2.1: schemas for the tools you add. Emptied at step 2.2 --
 # next_available_day moved to the MCP server, and a name can only have one
 # owner. The schema I wrote for it is in git at commit 3a7520f if it is needed

@@ -8,8 +8,8 @@ Number: 62,818 input tokens per pass over the five ticket types before Build 2, 
 Safety check: It cannot take an irreversible action on its own — confirm_rebooking needs a confirmation_token that only the customer's own click produces, so "the customer said yes" in chat does not reissue a ticket. Proved on the wire, not in the source: on the twelve-passenger group ticket the agent called escalate_to_human instead of acting, 1 of the 14 tool calls in the measured run, and gates 1.2, 1.3, 1.4, 2.1 and 2.2 all read the wire.
 Next: Turn the token count into money — a bench that gives cost per resolved contact against the $6.90 a human contact costs — and eval cases that grade whether the answers are actually right, which nothing does today.
 Still broken: Nothing watches tone. The abusive-message ticket gets a calm, helpful, entirely correct answer and no gate fires, so the first time a customer is abusive in production we find out from the customer. Two smaller ones we would rather say than have found: next_available_day answers for a party of one, so it cannot tell a family of three they will fit; and no answer this agent gives has ever been graded for correctness — every number above is about cost and completion, not about being right.
-Lever: <cost | speed | intelligence>
-
+Lever: intelligence
+Caveat: Improving the agent's behavioral instructions may add tokens and latency, and a Stage 2 benchmark improvement does not prove accuracy on real customer traffic.
 ## Priya asked
 
 Costs:
